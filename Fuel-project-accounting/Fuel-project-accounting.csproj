@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F67D4E7E-2230-48E6-9338-34F8A9F9E3C1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Fuel_project_accounting</RootNamespace>
+    <AssemblyName>Fuel-project-accounting</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=8.3.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.8.3.1\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=8.1.0.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.8.1.0\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.3.0.1\lib\netstandard2.0\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.16.0.18925.20022\lib\net40\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Xml, Version=8.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Xml.8.0.2\lib\net462\System.Security.Cryptography.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Car\CarMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car\CarMainForm.Designer.cs">
+      <DependentUpon>CarMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car\EditCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car\EditCar.Designer.cs">
+      <DependentUpon>EditCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car\FilterCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car\FilterCar.Designer.cs">
+      <DependentUpon>FilterCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car\SearchCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car\SearchCar.Designer.cs">
+      <DependentUpon>SearchCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Car\ViewCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Car\ViewCar.Designer.cs">
+      <DependentUpon>ViewCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\DriverMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\DriverMainForm.Designer.cs">
+      <DependentUpon>DriverMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\EditDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\EditDriver.Designer.cs">
+      <DependentUpon>EditDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\FilterDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\FilterDriver.Designer.cs">
+      <DependentUpon>FilterDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\SearchDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\SearchDriver.Designer.cs">
+      <DependentUpon>SearchDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Driver\ViewDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Driver\ViewDriver.Designer.cs">
+      <DependentUpon>ViewDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Functions\FunctionsMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Functions\FunctionsMainForm.Designer.cs">
+      <DependentUpon>FunctionsMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GSM\EditGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GSM\EditGSM.Designer.cs">
+      <DependentUpon>EditGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GSM\FilterGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GSM\FilterGSM.Designer.cs">
+      <DependentUpon>FilterGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GSM\GSMMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GSM\GSMMainForm.Designer.cs">
+      <DependentUpon>GSMMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GSM\SearchGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GSM\SearchGSM.Designer.cs">
+      <DependentUpon>SearchGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GSM\ViewGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GSM\ViewGSM.Designer.cs">
+      <DependentUpon>ViewGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marsrut\EditMarsrut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marsrut\EditMarsrut.Designer.cs">
+      <DependentUpon>EditMarsrut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marsrut\FilterMarsrut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marsrut\FilterMarsrut.Designer.cs">
+      <DependentUpon>FilterMarsrut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marsrut\MarsrutMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marsrut\MarsrutMainForm.Designer.cs">
+      <DependentUpon>MarsrutMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marsrut\SearchMarsrut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marsrut\SearchMarsrut.Designer.cs">
+      <DependentUpon>SearchMarsrut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Marsrut\ViewMarsrut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Marsrut\ViewMarsrut.Designer.cs">
+      <DependentUpon>ViewMarsrut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Postavchik\EditPostavchik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Postavchik\EditPostavchik.Designer.cs">
+      <DependentUpon>EditPostavchik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Postavchik\FilterPostavchik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Postavchik\FilterPostavchik.Designer.cs">
+      <DependentUpon>FilterPostavchik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Postavchik\PostavchikMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Postavchik\PostavchikMainForm.Designer.cs">
+      <DependentUpon>PostavchikMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Postavchik\SearchPostavchik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Postavchik\SearchPostavchik.Designer.cs">
+      <DependentUpon>SearchPostavchik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Postavchik\ViewPostavchik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Postavchik\ViewPostavchik.Designer.cs">
+      <DependentUpon>ViewPostavchik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostavkaGSM\EditPostavkaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostavkaGSM\EditPostavkaGSM.Designer.cs">
+      <DependentUpon>EditPostavkaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostavkaGSM\FilterPostavkaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostavkaGSM\FilterPostavkaGSM.Designer.cs">
+      <DependentUpon>FilterPostavkaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostavkaGSM\PostavkaGSMMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostavkaGSM\PostavkaGSMMainForm.Designer.cs">
+      <DependentUpon>PostavkaGSMMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostavkaGSM\SearchPostavkaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostavkaGSM\SearchPostavkaGSM.Designer.cs">
+      <DependentUpon>SearchPostavkaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PostavkaGSM\ViewPostavkaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostavkaGSM\ViewPostavkaGSM.Designer.cs">
+      <DependentUpon>ViewPostavkaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PutList\EditPutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PutList\EditPutList.Designer.cs">
+      <DependentUpon>EditPutList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PutList\ExcelEx.cs" />
+    <Compile Include="PutList\FilterPutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PutList\FilterPutList.Designer.cs">
+      <DependentUpon>FilterPutList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PutList\PutListMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PutList\PutListMainForm.Designer.cs">
+      <DependentUpon>PutListMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PutList\SearchPutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PutList\SearchPutList.Designer.cs">
+      <DependentUpon>SearchPutList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PutList\ViewPutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PutList\ViewPutList.Designer.cs">
+      <DependentUpon>ViewPutList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PutList\WordEx.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="VidachaGSM\EditVidachaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VidachaGSM\EditVidachaGSM.Designer.cs">
+      <DependentUpon>EditVidachaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VidachaGSM\FilterVidachaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VidachaGSM\FilterVidachaGSM.Designer.cs">
+      <DependentUpon>FilterVidachaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VidachaGSM\SearchVidachaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VidachaGSM\SearchVidachaGSM.Designer.cs">
+      <DependentUpon>SearchVidachaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VidachaGSM\VidachaGSMMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VidachaGSM\VidachaGSMMainForm.Designer.cs">
+      <DependentUpon>VidachaGSMMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VidachaGSM\ViewVidachaGSM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VidachaGSM\ViewVidachaGSM.Designer.cs">
+      <DependentUpon>ViewVidachaGSM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ГрузоперевозкиDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ГрузоперевозкиDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Car\CarMainForm.resx">
+      <DependentUpon>CarMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car\EditCar.resx">
+      <DependentUpon>EditCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car\FilterCar.resx">
+      <DependentUpon>FilterCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car\SearchCar.resx">
+      <DependentUpon>SearchCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Car\ViewCar.resx">
+      <DependentUpon>ViewCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver\DriverMainForm.resx">
+      <DependentUpon>DriverMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver\EditDriver.resx">
+      <DependentUpon>EditDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver\FilterDriver.resx">
+      <DependentUpon>FilterDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver\SearchDriver.resx">
+      <DependentUpon>SearchDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Driver\ViewDriver.resx">
+      <DependentUpon>ViewDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Functions\FunctionsMainForm.resx">
+      <DependentUpon>FunctionsMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GSM\EditGSM.resx">
+      <DependentUpon>EditGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GSM\FilterGSM.resx">
+      <DependentUpon>FilterGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GSM\GSMMainForm.resx">
+      <DependentUpon>GSMMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GSM\SearchGSM.resx">
+      <DependentUpon>SearchGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GSM\ViewGSM.resx">
+      <DependentUpon>ViewGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marsrut\EditMarsrut.resx">
+      <DependentUpon>EditMarsrut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marsrut\FilterMarsrut.resx">
+      <DependentUpon>FilterMarsrut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marsrut\MarsrutMainForm.resx">
+      <DependentUpon>MarsrutMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marsrut\SearchMarsrut.resx">
+      <DependentUpon>SearchMarsrut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marsrut\ViewMarsrut.resx">
+      <DependentUpon>ViewMarsrut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Postavchik\EditPostavchik.resx">
+      <DependentUpon>EditPostavchik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Postavchik\FilterPostavchik.resx">
+      <DependentUpon>FilterPostavchik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Postavchik\PostavchikMainForm.resx">
+      <DependentUpon>PostavchikMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Postavchik\SearchPostavchik.resx">
+      <DependentUpon>SearchPostavchik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Postavchik\ViewPostavchik.resx">
+      <DependentUpon>ViewPostavchik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostavkaGSM\EditPostavkaGSM.resx">
+      <DependentUpon>EditPostavkaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostavkaGSM\FilterPostavkaGSM.resx">
+      <DependentUpon>FilterPostavkaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostavkaGSM\PostavkaGSMMainForm.resx">
+      <DependentUpon>PostavkaGSMMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostavkaGSM\SearchPostavkaGSM.resx">
+      <DependentUpon>SearchPostavkaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PostavkaGSM\ViewPostavkaGSM.resx">
+      <DependentUpon>ViewPostavkaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PutList\EditPutList.resx">
+      <DependentUpon>EditPutList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PutList\FilterPutList.resx">
+      <DependentUpon>FilterPutList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PutList\PutListMainForm.resx">
+      <DependentUpon>PutListMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PutList\SearchPutList.resx">
+      <DependentUpon>SearchPutList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PutList\ViewPutList.resx">
+      <DependentUpon>ViewPutList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VidachaGSM\EditVidachaGSM.resx">
+      <DependentUpon>EditVidachaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VidachaGSM\FilterVidachaGSM.resx">
+      <DependentUpon>FilterVidachaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VidachaGSM\SearchVidachaGSM.resx">
+      <DependentUpon>SearchVidachaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VidachaGSM\VidachaGSMMainForm.resx">
+      <DependentUpon>VidachaGSMMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VidachaGSM\ViewVidachaGSM.resx">
+      <DependentUpon>ViewVidachaGSM.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="ГрузоперевозкиDataSet.xsc">
+      <DependentUpon>ГрузоперевозкиDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ГрузоперевозкиDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ГрузоперевозкиDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ГрузоперевозкиDataSet.xss">
+      <DependentUpon>ГрузоперевозкиDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Иконка.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

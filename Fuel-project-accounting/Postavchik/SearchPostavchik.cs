@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Fuel_project_accounting.Postavchik
+{
+    public partial class SearchPostavchik : Form
+    {
+        public SearchPostavchik()
+        {
+            InitializeComponent();
+        }
+
+        private void fillToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.поиск_По_ПоставщикамTableAdapter.Fill(this.грузоперевозкиDataSet.Поиск_По_Поставщикам, наименованиеПроцToolStripTextBox.Text);
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+    }
+}
